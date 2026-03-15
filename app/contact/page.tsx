@@ -21,14 +21,18 @@ export default function Contact() {
                 <div className="w-full h-64 rounded-3xl overflow-hidden shadow-lg border border-white/50 relative group">
                     <div className="absolute inset-0 bg-rothschild/20 pointer-events-none z-10 mix-blend-overlay" />
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.524966603093!2d2.333550376846985!3d48.86728797133334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e3c8801d0bf%3A0x66c04f9e31d8c19!2s9%20Rue%20du%204%20Septembre%2C%2075002%20Paris!5e0!3m2!1sfr!2sfr!4v1706555555555!5m2!1sfr!2sfr" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.0401340549045!2d2.3683056769411933!3d48.83359050212002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6718d0979873d%3A0x705f13426214300!2sSTATION%20F!5e0!3m2!1sfr!2sfr!4v1710000000000!5m2!1sfr!2sfr" 
                         width="100%" 
                         height="100%" 
-                        style={{ border: 0, filter: "grayscale(100%) invert(100%) contrast(80%) sepia(20%) hue-rotate(180deg)" }} 
+                        style={{ 
+                            border: 0, 
+                            filter: "grayscale(100%) invert(100%) contrast(80%) sepia(20%) hue-rotate(180deg)" 
+                        }} 
                         allowFullScreen 
                         loading="lazy" 
                         referrerPolicy="no-referrer-when-downgrade"
                         className="w-full h-full grayscale transition-all duration-700 hover:grayscale-0"
+                        title="Station F"
                     />
                 </div>
             </div>
