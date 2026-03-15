@@ -13,8 +13,8 @@ export default function Contact() {
                 </p>
                 
                 <div className="space-y-4 text-gray-600 mb-8">
-                    <p><strong>Adresse :</strong> 9 Rue du 4 Septembre, 75002 Paris</p>
-                    <p><strong>Email :</strong> contact@paulforbe.com</p>
+                    <p><strong>Adresse :</strong> 5 parvis Alain Turing, 75013 Paris</p>
+                    <p><strong>Email :</strong> contact@paulforbe.fr</p>
                 </div>
 
 

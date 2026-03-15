@@ -7,27 +7,27 @@ import Link from "next/link";
 const team = [
   {
     name: "Gaëtan",
-    role: "CEO & Fondateur",
+    role: "CEO & Ingénieur Patrimonial",
     bio: "Expert en stratégie patrimoniale depuis plus de 15 ans. Gaëtan accompagne les dirigeants et familles fortunées dans la structuration de leur patrimoine.",
     image: "/team/gaetan.jpg", // Placeholder path
     linkedin: "#",
-    email: "gaetan@paulforbe.com"
+    email: "contact@paulforbe.fr"
   },
   {
     name: "Mylène",
-    role: "Responsable Partenariats & Assurances",
+    role: "Ingénieure Patrimoniale",
     bio: "Spécialiste de la protection sociale et des assurances. Mylène veille à ce que chaque client bénéficie des meilleures couvertures du marché.",
     image: "/team/mylene.jpg", // Placeholder path
     linkedin: "#",
-    email: "mylene@paulforbe.com"
+    email: "Myleneaffes.paulforbe@gmail.com"
   },
   {
     name: "Inès",
-    role: "Conseillère en Gestion de Patrimoine",
+    role: "Ingénieure Patrimoniale",
     bio: "Passionnée par l'investissement immobilier et financier. Inès vous guide avec pédagogie pour faire fructifier votre épargne.",
     image: "/team/ines.jpg", // Placeholder path
     linkedin: "#",
-    email: "ines@paulforbe.com"
+    email: "Ineslaribi.paulforbe@gmail.com"
   }
 ];
 

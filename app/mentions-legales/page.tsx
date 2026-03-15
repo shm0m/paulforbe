@@ -11,8 +11,8 @@ export default function MentionsLegales() {
                 <h2 className="text-xl font-bold text-rothschild mb-4">1. Éditeur du site</h2>
                 <p>
                     Le site <strong>Paulforbe.com</strong> est édité par la société <strong>Paulforbe</strong>, SAS au capital de 10 000 €, immatriculée au Registre du Commerce et des Sociétés de Paris.<br /><br />
-                    <strong>Siège social :</strong> 9 Rue du 4 Septembre, 75002 Paris<br />
-                    <strong>Email :</strong> contact@paulforbe.com
+                    <strong>Siège social :</strong> 5 parvis Alain Turing, 75013 Paris<br />
+                    <strong>Email :</strong> contact@paulforbe.fr
                 </p>
             </section>
 

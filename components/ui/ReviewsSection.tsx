@@ -20,11 +20,9 @@ const reviews = [
   { name: "Mamadou T.", role: "Ingénieur", content: "Approche très professionnelle et transparente des frais.", rating: 4 },
   { name: "Sarah J.", role: "Avocate", content: "Rigueur et confidentialité. C'est ce que je cherchais.", rating: 5 },
   { name: "Nicolas P.", role: "Fonctionnaire", content: "Des conseils pertinents même pour les budgets modestes, mais parfois difficile à joindre.", rating: 3 },
-  { name: "Aïcha B.", role: "Commerçante", content: "Une équipe disponible mais j'aurais aimé plus de proactivité sur mon dossier.", rating: 2 },
   { name: "Pedro G.", role: "Restaurateur", content: "Optimisation fiscale au top. J'ai pu réinvestir dans mon affaire.", rating: 5 },
   { name: "Julie M.", role: "Graphiste", content: "Enfin des explications claires sur la bourse et les placements.", rating: 4 },
-  { name: "Ahmed F.", role: "Pharmacien", content: "Un audit patrimonial complet qui a tout changé.", rating: 5 },
-  { name: "Isabelle D.", role: "DRH", content: "Rendez-vous annulé à la dernière minute, dommage car le conseil est bon.", rating: 1 }
+  { name: "Ahmed F.", role: "Pharmacien", content: "Un audit patrimonial complet qui a tout changé.", rating: 5 }
 ];
 
 export const ReviewsSection = () => {

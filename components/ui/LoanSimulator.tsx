@@ -75,29 +75,33 @@ export const LoanSimulator = () => {
                         <div className="space-y-6">
                             <div className="space-y-1">
                                 <label className="text-sm font-bold text-gray-400 uppercase tracking-wider">Montant emprunté</label>
-                                <div className="text-2xl md:text-3xl font-bold font-serif text-rothschild">{amount.toLocaleString()} €</div>
                             </div>
-                            <input 
-                                type="range"
-                                min="50000" max="1000000" step="5000"
-                                value={amount}
-                                onChange={(e) => setAmount(Number(e.target.value))}
-                                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rothschild"
-                            />
+                            <div className="relative group">
+                                <input 
+                                    type="number"
+                                    min="50000" step="1000"
+                                    value={amount}
+                                    onChange={(e) => setAmount(Number(e.target.value))}
+                                    className="w-full bg-transparent border-b border-gray-300 py-2 pr-8 text-3xl font-serif font-bold text-rothschild focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
+                                />
+                                <span className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-xl pointer-events-none">€</span>
+                            </div>
                         </div>
 
                          <div className="space-y-6">
                             <div className="space-y-1">
                                 <label className="text-sm font-bold text-gray-400 uppercase tracking-wider">Durée</label>
-                                <div className="text-2xl md:text-3xl font-bold font-serif text-rothschild">{years} ans</div>
                             </div>
-                            <input 
-                                type="range"
-                                min="5" max="30" step="1"
-                                value={years}
-                                onChange={(e) => setYears(Number(e.target.value))}
-                                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rothschild"
-                            />
+                            <div className="relative group">
+                                <input 
+                                    type="number"
+                                    min="1" max="30" step="1"
+                                    value={years}
+                                    onChange={(e) => setYears(Math.max(1, Number(e.target.value)))}
+                                    className="w-full bg-transparent border-b border-gray-300 py-2 pr-12 text-3xl font-serif font-bold text-rothschild focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
+                                />
+                                <span className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-xl pointer-events-none">ANS</span>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-8">

@@ -182,35 +182,39 @@ export default function CompoundInterestCalculator() {
 
                             {/* Duration */}
                             <div>
-                                <label className="flex items-center justify-between text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+                                <label className="flex items-center text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
                                     Horizon de placement
-                                    <span className="text-blue-600">{years} ans</span>
                                 </label>
-                                <input 
-                                    type="range" 
-                                    min="1" 
-                                    max="50" 
-                                    value={years} 
-                                    onChange={(e) => setYears(Number(e.target.value))}
-                                    className="w-full h-1 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                                />
+                                <div className="relative group">
+                                    <input 
+                                        type="number"
+                                        min="1"
+                                        max="50"
+                                        value={years}
+                                        onChange={(e) => setYears(Math.max(1, Number(e.target.value)))}
+                                        className="w-full bg-transparent border-b border-gray-300 py-2 pr-16 text-2xl font-serif font-bold text-rothschild focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
+                                    />
+                                    <span className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm pointer-events-none">ANNÉES</span>
+                                </div>
                             </div>
 
                             {/* Interest Rate */}
                             <div>
-                                <label className="flex items-center justify-between text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+                                <label className="flex items-center text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
                                     Taux d&apos;intérêt
-                                    <span className="text-amber-500">{interestRate}%</span>
                                 </label>
-                                <input 
-                                    type="range" 
-                                    min="0" 
-                                    max="15" 
-                                    step="0.1"
-                                    value={interestRate} 
-                                    onChange={(e) => setInterestRate(Number(e.target.value))}
-                                    className="w-full h-1 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-amber-500"
-                                />
+                                <div className="relative group">
+                                    <input 
+                                        type="number"
+                                        min="0"
+                                        max="15"
+                                        step="0.1"
+                                        value={interestRate}
+                                        onChange={(e) => setInterestRate(Number(e.target.value))}
+                                        className="w-full bg-transparent border-b border-gray-300 py-2 pr-16 text-2xl font-serif font-bold text-rothschild focus:outline-none focus:border-amber-500 transition-colors placeholder-gray-400"
+                                    />
+                                    <span className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm pointer-events-none">%</span>
+                                </div>
                             </div>
 
                             {/* Interest Payment Interval (Custom number input) */}

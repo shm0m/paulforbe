@@ -8,10 +8,10 @@ import { ChevronDown, Check, User, Building, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const PRODUCTS = [
-    { id: "structured", label: "Produits Structurés", modifier: 1.0 },
-    { id: "scpi", label: "SCPI", modifier: 1.0 }, 
-    { id: "capital_guaranteed", label: "Produit à Capital Garanti", modifier: 0.4 }, 
-    { id: "private_equity", label: "Private Equity", modifier: 1.4 } 
+    { id: "structured", label: "Produits Structurés", modifier: 1.0, description: "Des solutions offrant un rendement attractif avec une protection partielle du capital sous certaines conditions de marché." },
+    { id: "scpi", label: "SCPI", modifier: 1.0, description: "Investissez dans l'immobilier d'entreprise et percevez des revenus locatifs réguliers sans contrainte de gestion." }, 
+    { id: "capital_guaranteed", label: "Produit à Capital Garanti", modifier: 0.4, description: "Sécurisez totalement votre épargne tout en profitant d'une rémunération stable et sans risque de perte." }, 
+    { id: "private_equity", label: "Private Equity", modifier: 1.4, description: "Soutenez la croissance d'entreprises non cotées pour viser des performances potentiellement très élevées sur le long terme." } 
 ];
 
 const RISKS = [
@@ -114,7 +114,7 @@ export const Simulator = () => {
                                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-80 bg-white border border-slate-100 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] overflow-hidden z-50 p-2"
+                                className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-96 bg-white border border-slate-100 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.12)] overflow-hidden z-50 p-2"
                             >
                                 {PRODUCTS.map((product) => (
                                     <button
@@ -124,18 +124,23 @@ export const Simulator = () => {
                                             setIsProductMenuOpen(false);
                                         }}
                                         className={cn(
-                                            "w-full text-left px-6 py-4 text-sm font-bold transition-all rounded-xl flex items-center justify-between",
-                                            selectedProduct.id === product.id ? "bg-rothschild text-white shadow-md" : "text-gray-500 hover:bg-slate-50"
+                                            "w-full text-left px-6 py-4 transition-all rounded-xl flex flex-col gap-1",
+                                            selectedProduct.id === product.id ? "bg-rothschild text-white shadow-md" : "hover:bg-slate-50"
                                         )}
                                     >
-                                        {product.label}
-                                        {selectedProduct.id === product.id && <Check size={18} />}
+                                        <div className="flex items-center justify-between w-full">
+                                            <span className={cn("text-sm font-bold", selectedProduct.id === product.id ? "text-white" : "text-gray-800")}>{product.label}</span>
+                                            {selectedProduct.id === product.id && <Check size={18} />}
+                                        </div>
                                     </button>
                                 ))}
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
+                <p className="mt-6 text-sm text-gray-500 max-w-xl text-center leading-relaxed">
+                    {selectedProduct.description}
+                </p>
             </div>
 
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start relative z-10">
@@ -248,15 +253,17 @@ export const Simulator = () => {
                     <div className="space-y-6">
                         <div className="space-y-1">
                              <label className="text-sm font-bold text-gray-400 uppercase tracking-wider">Le montant de votre investissement</label>
-                             <div className="text-3xl font-bold font-serif text-rothschild">{amount.toLocaleString()} €</div>
                         </div>
-                        <input 
-                            type="range"
-                            min="1000" max="500000" step="1000"
-                            value={amount}
-                            onChange={(e) => setAmount(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rothschild"
-                        />
+                        <div className="relative group">
+                            <input 
+                                type="number"
+                                min="1000" step="1000"
+                                value={amount}
+                                onChange={(e) => setAmount(Number(e.target.value))}
+                                className="w-full bg-transparent border-b border-gray-300 py-2 pr-8 text-3xl font-serif font-bold text-rothschild focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
+                            />
+                            <span className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-xl pointer-events-none">€</span>
+                        </div>
                     </div>
 
                     {isPE && (
@@ -274,15 +281,17 @@ export const Simulator = () => {
                         <div className="space-y-6">
                             <div className="space-y-1">
                                 <label className="text-sm font-bold text-gray-400 uppercase tracking-wider">Durée</label>
-                                <div className="text-3xl font-bold font-serif text-rothschild">{duration} ans</div>
                             </div>
-                            <input 
-                                type="range"
-                                min="1" max="30" step="1"
-                                value={duration}
-                                onChange={(e) => setDuration(Number(e.target.value))}
-                                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rothschild"
-                            />
+                            <div className="relative group">
+                                <input 
+                                    type="number"
+                                    min="1" max="30" step="1"
+                                    value={duration}
+                                    onChange={(e) => setDuration(Math.max(1, Number(e.target.value)))}
+                                    className="w-full bg-transparent border-b border-gray-300 py-2 pr-12 text-3xl font-serif font-bold text-rothschild focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-400"
+                                />
+                                <span className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-xl pointer-events-none">ANS</span>
+                            </div>
                         </div>
                     )}
                 </div>

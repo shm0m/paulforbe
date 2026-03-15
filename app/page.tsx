@@ -1,10 +1,10 @@
 "use client";
 
 import { TrendingUp, Building2, Briefcase, ShieldCheck, Landmark, Compass, PiggyBank, ClipboardCheck } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { Partners } from "@/components/ui/Partners";
-import { StickyScrollReveal } from "@/components/ui/StickyScrollReveal";
+import { ScrollSpySection } from "@/components/ui/ScrollSpySection";
 import { ReviewsSection } from "@/components/ui/ReviewsSection";
 
 const ScrollVideo = () => {
@@ -14,8 +14,14 @@ const ScrollVideo = () => {
         offset: ["start start", "end end"]
     });
 
-    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
-    const borderRadius = useTransform(scrollYProgress, [0, 0.5], [0, 32]);
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
+
+    const scale = useTransform(smoothProgress, [0, 0.5], [1, 0.9]);
+    const borderRadius = useTransform(smoothProgress, [0, 0.5], [0, 32]);
     
     return (
         <div ref={containerRef} className="h-[120vh] md:h-[150vh] relative">
@@ -86,114 +92,103 @@ export default function Home() {
          </div>
       </section>
 
-      <section id="notre-expertise" className="relative bg-slate-50 pb-20">
-         <div className="container mx-auto px-6 py-10 text-center">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-rothschild mb-4">Notre Expertise</h2>
-            <div className="w-24 h-1 bg-rothschild/20 mx-auto rounded-full" />
-         </div>
-         
-         <StickyScrollReveal 
-            sectionTitle="Notre Expertise"
+      <ScrollSpySection 
+            title="Notre Expertise"
+            description="Des solutions sur-mesure pour développer, optimiser et transmettre votre patrimoine avec l'accompagnement d'experts dédiés."
             items={[
-            {
-                title: "Stratégie immobilier & Asset management",
-                desc: "Dans un marché immobilier de plus en plus complexe, bâtir ou optimiser un portefeuille d’actifs immobiliers requiert services sur mesure et conseils en stratégie d’investissement immobilier. Les équipes spécialisées en capital markets de Paul Forbe déploient leur savoir-faire et leur vision globale du secteur pour vous permettre de créer toute la valeur à laquelle vous aspirez.",
-                icon: Building2,
-                image: "/expertises/strategie_immo.jpg"
-            },
-            {
-                title: "Planification patrimoniale",
-                desc: "La planification patrimoniale est un sujet qui occupe un nombre croissant de ménages de nos jours. Et pour cause. Familles recomposées, délocalisations, diversification du patrimoine et bien d’autres raisons justifient une intervention préalable pour garantir une transmission réussie des avoirs aux prochaines générations.",
-                icon: Compass,
-                image: "/expertises/planification.jpg"
-            },
-            {
-                title: "Réduction d'impôt",
-                desc: "Les dispositifs de la loi française vous permettent de réduire vos impôts en investissant. Le cabinet Paul Forbe vous propose des solutions d’investissement immobilier en fonction de votre stratégie patrimoniale personnelle. Quelques exemples :",
-                list: [
-                    "Défiscalisation immobilière (Lois Pinel, Malraux, Loueur en Meublé, Girardin, Monuments Historiques, Déficits Fonciers, Murs de Boutique, Viagers, etc)."
-                ],
-                icon: PiggyBank,
-                image: "/expertises/fiscalite.jpg"
-            },
-            {
-                title: "Stratégie d'investissement",
-                desc: "Un éventail de facteurs peut déterminer votre stratégie d’investissement personnelle. Cela comprend votre appétence aux risques et les retours que vous espérez obtenir sur vos investissements, ainsi que les actifs, régions ou secteurs qui vous intéressent. Le temps que vous pensez passer à investir devrait aussi définir votre stratégie.",
-                icon: TrendingUp,
-                image: "/expertises/strategie_invest.jpg"
-            },
-            {
-                title: "Audit patrimonial & Transmission",
-                desc: "Pour construire l’architecture de votre patrimoine, le cabinet Paul Forbe élabore au préalable un audit patrimonial. L’audit patrimonial est un bilan de votre patrimoine et de votre situation (situation civile et familiale, professionnelle, budgétaire, fiscale, prévoyance).",
-                icon: ClipboardCheck,
-                image: "/expertises/audit.jpg"
-            }
-         ]} />
-      </section>
+                {
+                    title: "Stratégie immobilier & Asset management",
+                    desc: "Dans un marché immobilier de plus en plus complexe, bâtir ou optimiser un portefeuille d’actifs immobiliers requiert services sur mesure et conseils en stratégie d’investissement immobilier. Les équipes spécialisées en capital markets de Paul Forbe déploient leur savoir-faire et leur vision globale du secteur pour vous permettre de créer toute la valeur à laquelle vous aspirez.",
+                    icon: Building2,
+                    image: "/expertises/strategie_immo.jpg"
+                },
+                {
+                    title: "Planification patrimoniale",
+                    desc: "La planification patrimoniale est un sujet qui occupe un nombre croissant de ménages de nos jours. Et pour cause. Familles recomposées, délocalisations, diversification du patrimoine et bien d’autres raisons justifient une intervention préalable pour garantir une transmission réussie des avoirs aux prochaines générations.",
+                    icon: Compass,
+                    image: "/expertises/planification.jpg"
+                },
+                {
+                    title: "Réduction d'impôt",
+                    desc: "Les dispositifs de la loi française vous permettent de réduire vos impôts en investissant. Le cabinet Paul Forbe vous propose des solutions d’investissement immobilier en fonction de votre stratégie patrimoniale personnelle. Quelques exemples :",
+                    list: [
+                        "Défiscalisation immobilière (Lois Pinel, Malraux, Loueur en Meublé, Girardin, Monuments Historiques, Déficits Fonciers, Murs de Boutique, Viagers, etc)."
+                    ],
+                    icon: PiggyBank,
+                    image: "/expertises/fiscalite.jpg"
+                },
+                {
+                    title: "Stratégie d'investissement",
+                    desc: "Un éventail de facteurs peut déterminer votre stratégie d’investissement personnelle. Cela comprend votre appétence aux risques et les retours que vous espérez obtenir sur vos investissements, ainsi que les actifs, régions ou secteurs qui vous intéressent. Le temps que vous pensez passer à investir devrait aussi définir votre stratégie.",
+                    icon: TrendingUp,
+                    image: "/expertises/strategie_invest.jpg"
+                },
+                {
+                    title: "Audit patrimonial & Transmission",
+                    desc: "Pour construire l’architecture de votre patrimoine, le cabinet Paul Forbe élabore au préalable un audit patrimonial. L’audit patrimonial est un bilan de votre patrimoine et de votre situation (situation civile et familiale, professionnelle, budgétaire, fiscale, prévoyance).",
+                    icon: ClipboardCheck,
+                    image: "/expertises/audit.jpg"
+                }
+            ]} 
+      />
 
-      <section id="expertises" className="relative bg-white pb-0">
-         <div className="container mx-auto px-6 py-10 text-center">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-rothschild mb-4">Nos secteurs d&apos;intervention</h2>
-            <div className="w-24 h-1 bg-rothschild/20 mx-auto rounded-full" />
-            <p className="mt-6 text-gray-500 max-w-2xl mx-auto text-lg">
-                Une expertise globale pour répondre à tous vos besoins patrimoniaux.
-            </p>
-        </div>
-        
-        <StickyScrollReveal 
-            sectionTitle="Nos secteurs d'intervention"
+      <div className="w-full h-px bg-slate-200" />
+
+      <ScrollSpySection 
+            title="Secteurs d'intervention"
+            description="Une expertise globale et une architecture ouverte pour répondre à l'intégralité de vos besoins patrimoniaux."
             items={[
-            {
-                title: "Les placements financiers",
-                desc: "Paul Forbe est partenaire de multiples maisons de gestion que nous avons sélectionnés sur les différents marchés et qui nous permettent de vous proposer des produits totalement adaptés à vos objectifs en matière de placements financiers.",
-                icon: TrendingUp,
-                image: "/expertises/finance.jpg"
-            },
-            {
-                title: "Les services aux Pro",
-                desc: "Paul Forbe assiste les professionnels avec des solutions patrimoniales dédiées aux entreprises. Quelques exemples de nos interventions :",
-                list: [
-                    "Garantie décennale",
-                    "Assurance Responsabilité civile professionnel",
-                    "Assurance Auto/Moto professionnel",
-                    "Assurance Propriétaire professionnel",
-                    "Epargne-Retraite (art 83, PerIN, Percoll, PerO, loi Madelin)",
-                    "Complémentaire santé",
-                    "Prévoyance décès, incapacité et invalidité",
-                    "Garanties en cas d'arrêt d'activité (maladie, accident, faillite)."
-                ],
-                icon: Briefcase,
-                image: "/expertises/pro.jpg"
-            },
-            {
-                title: "Le financement",
-                desc: "L'effet de levier d'un investissement immobilier passe bien évidement par un financement parfaitement réalisé. En tant que courtier en credit Paul Forbe accompagne ses clients à chaque étape de leur financement afin qu'il soit totalement optimisé.",
-                icon: Landmark,
-                image: "/expertises/financement.jpg"
-            },
-            {
-                title: "L'immobilier",
-                desc: "L’immobilier est un outil fondamental de votre patrimoine car il vous fait bénéficier de l’effet de levier du crédit que ce soit pour l’immobilier de jouissance (résidence principale et résidence secondaire) ou pour l’immobilier de rendement (location). D’autant que des dispositifs de la loi française vous permettent en parallèle de réduire vos impôts en investissant. Notre Cabinet vous propose des solutions d’investissement immobilier en fonction de votre stratégie patrimoniale personnelle.",
-                icon: Building2,
-                image: "/expertises/immobilier.jpg"
-            },
-            {
-                title: "Les assurances",
-                desc: "Paul Forbe dispose d'une large gamme de produits d'assurances minutieusement sélectionnés parmi les meilleurs du marché afin de couvrir et prévoir tous les risques :",
-                list: [
-                    "Assurance habitation",
-                    "Propriétaire non-occupant",
-                    "Garantie loyers impayés",
-                    "Assurance emprunteur",
-                    "Prévoyance décès",
-                    "Mutuelle santé",
-                    "Assurance Auto / Moto / Scooter"
-                ],
-                icon: ShieldCheck,
-                image: "/expertises/assurances.jpg"
-            }
-        ]} />
-      </section>
+                {
+                    title: "Les placements financiers",
+                    desc: "Paul Forbe est partenaire de multiples maisons de gestion que nous avons sélectionnés sur les différents marchés et qui nous permettent de vous proposer des produits totalement adaptés à vos objectifs en matière de placements financiers.",
+                    icon: TrendingUp,
+                    image: "/expertises/finance.jpg"
+                },
+                {
+                    title: "Les services aux Pro",
+                    desc: "Paul Forbe assiste les professionnels avec des solutions patrimoniales dédiées aux entreprises. Quelques exemples de nos interventions :",
+                    list: [
+                        "Garantie décennale",
+                        "Assurance Responsabilité civile professionnel",
+                        "Assurance Auto/Moto professionnel",
+                        "Assurance Propriétaire professionnel",
+                        "Epargne-Retraite (art 83, PerIN, Percoll, PerO, loi Madelin)",
+                        "Complémentaire santé",
+                        "Prévoyance décès, incapacité et invalidité",
+                        "Garanties en cas d'arrêt d'activité (maladie, accident, faillite)."
+                    ],
+                    icon: Briefcase,
+                    image: "/expertises/pro.jpg"
+                },
+                {
+                    title: "Le financement",
+                    desc: "L'effet de levier d'un investissement immobilier passe bien évidement par un financement parfaitement réalisé. En tant que courtier en credit Paul Forbe accompagne ses clients à chaque étape de leur financement afin qu'il soit totalement optimisé.",
+                    icon: Landmark,
+                    image: "/expertises/financement.jpg"
+                },
+                {
+                    title: "L'immobilier",
+                    desc: "L’immobilier est un outil fondamental de votre patrimoine car il vous fait bénéficier de l’effet de levier du crédit que ce soit pour l’immobilier de jouissance (résidence principale et résidence secondaire) ou pour l’immobilier de rendement (location). D’autant que des dispositifs de la loi française vous permettent en parallèle de réduire vos impôts en investissant. Notre Cabinet vous propose des solutions d’investissement immobilier en fonction de votre stratégie patrimoniale personnelle.",
+                    icon: Building2,
+                    image: "/expertises/immobilier.jpg"
+                },
+                {
+                    title: "Les assurances",
+                    desc: "Paul Forbe dispose d'une large gamme de produits d'assurances minutieusement sélectionnés parmi les meilleurs du marché afin de couvrir et prévoir tous les risques :",
+                    list: [
+                        "Assurance habitation",
+                        "Propriétaire non-occupant",
+                        "Garantie loyers impayés",
+                        "Assurance emprunteur",
+                        "Prévoyance décès",
+                        "Mutuelle santé",
+                        "Assurance Auto / Moto / Scooter"
+                    ],
+                    icon: ShieldCheck,
+                    image: "/expertises/assurances.jpg"
+                }
+            ]} 
+      />
 
       <ReviewsSection />
     </div>

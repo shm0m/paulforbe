@@ -121,6 +121,7 @@ export const ContactForm = () => {
                             <option value="Audit Patrimonial">Audit Patrimonial</option>
                             <option value="Investissement">Investissement (SCPI, PE...)</option>
                             <option value="Crédit Immobilier">Crédit Immobilier</option>
+                            <option value="Assurance">Assurance</option>
                             <option value="Carrière">Carrière / Recrutement</option>
                             <option value="Autre demande">Autre demande</option>
                         </select>
