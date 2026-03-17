@@ -7,21 +7,21 @@ import Image from "next/image";
 
 const team = [
   {
-    name: "Gaëtan",
+    name: "Gaëtan Warin",
     role: "CEO & Ingénieur Patrimonial",
     bio: "Expert en stratégie patrimoniale depuis plus de 15 ans. Gaëtan accompagne les dirigeants et familles fortunées dans la structuration de leur patrimoine.",
     image: "/team/gaetan.jpg",
     email: "contact@paulforbe.fr"
   },
   {
-    name: "Mylène",
+    name: "Mylène Affes",
     role: "Ingénieure Patrimoniale",
     bio: "Spécialiste de la protection sociale et des assurances. Mylène veille à ce que chaque client bénéficie des meilleures couvertures du marché.",
     image: "/team/mylene.jpg",
     email: "myleneaffes.paulforbe@gmail.com"
   },
   {
-    name: "Inès",
+    name: "Inès Laribi",
     role: "Ingénieure Patrimoniale",
     bio: "Passionnée par l'investissement immobilier et financier. Inès vous guide avec pédagogie pour faire fructifier votre épargne.",
     image: "/team/ines.jpg",

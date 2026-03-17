@@ -32,7 +32,7 @@ const SCPIS = [
 ];
 
 const GUARANTEED_PRODUCTS = [
-    { id: "societe_generale", label: "Société Générale", sublabel: "Unité de compte garanti", rate: 0.0600, icon: Building },
+    { id: "acacia", label: "Acacia", sublabel: "Unité de compte garanti", rate: 0.0600, icon: Building },
     { id: "generali", label: "Generali", sublabel: "Fonds Euro garanti", rate: 0.0370, icon: getLionIcon }
 ];
 
@@ -203,7 +203,7 @@ export const Simulator = () => {
                                             "flex items-center gap-2 text-sm font-bold font-serif mt-2",
                                             selectedGuaranteed.id === prod.id ? "text-rothschild" : "text-gray-400"
                                         )}>
-                                           {prod.id === 'societe_generale' && <span className="w-2 h-2 bg-red-600 inline-block mr-1"></span>}
+                                           {prod.id === 'acacia' && <span className="w-2 h-2 bg-red-600 inline-block mr-1"></span>}
                                            {prod.id === 'generali' && <span className="w-2 h-2 bg-red-700 inline-block mr-1"></span>} 
                                            {prod.label}
                                         </div>
